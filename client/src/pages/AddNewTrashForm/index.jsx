@@ -36,7 +36,8 @@ export default function AddNewTrashModal() {
         ...form,
         photo
       });
-  
+      
+      console.log("Success!");
       navigate("/dashboard");
       toast.success("E-waste registered successfully!");
     } catch (err) {
@@ -83,7 +84,7 @@ export default function AddNewTrashModal() {
               <ImagePreview src={URL.createObjectURL(photo)} alt="Preview" />
             )}
 
-            <SubmitButton type="submit" onClick={handleSubmit}>
+            <SubmitButton type="submit">
               Submit
             </SubmitButton>
             <ButtonGradient type="button" onClick={() => navigate("/dashboard")}>Back to Dashboard</ButtonGradient>

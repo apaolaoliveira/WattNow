@@ -50,7 +50,7 @@ export default function Dashboard() {
         <Header>Welcome, {profile.name}!</Header>
         <SubHeader>This is your dashboard</SubHeader>
 
-        <ButtonGradient onClick={navigate('/new-trash')} className="full">+ Add new e-waste</ButtonGradient>
+        <ButtonGradient onClick={() => navigate('/new-trash')} className="full">+ Add new e-waste</ButtonGradient>
 
         <SectionTitle>Your Impact</SectionTitle>
 
