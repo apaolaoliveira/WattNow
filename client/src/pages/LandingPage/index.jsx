@@ -1,30 +1,13 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import useAuthFlow from '../../auth/useAuthFlow';
 
 export default function LandingPage() {
-  const { loginWithRedirect } = useAuth0();
-
-  const handleLogin = () => {
-    loginWithRedirect({
-      appState: {
-        returnTo: "/dashboard",
-      },
-    });
-  };
-
-  const handleSignup = () => {
-    loginWithRedirect({
-      screen_hint: "signup",	
-      appState: {
-        returnTo: "/complete-profile",
-      },
-    });
-  };
+  const { login, signup } = useAuthFlow();
 
   return (
     <div>
       <h1>Landing Page</h1>
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleSignup}>Signup</button>
+      <button onClick={login}>Login</button>
+      <button onClick={signup}>Signup</button>
     </div>
   );
 }

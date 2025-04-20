@@ -4,7 +4,7 @@ import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './auth/protectedRoute';
 import CompleteProfile from './pages/CompleteProfile';
-import AuthRedirect from './auth/AuthRedirect';
+import AuthRedirect from './auth/useRedirectAfterAuth';
 
 function App() {
   const { isLoading } = useAuth0();
