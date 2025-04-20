@@ -5,8 +5,9 @@ import {
 import ButtonGradient from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { submitEWaste } from "../../services/trashService";
 
-export default function AddNewTrashModal({ onClose, onSubmit }) {
+export default function AddNewTrashModal() {
   const [photo, setPhoto] = useState(null);
   const [form, setForm] = useState({
     brand: "",
@@ -29,14 +30,19 @@ export default function AddNewTrashModal({ onClose, onSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    Object.entries(form).forEach(([key, value]) => data.append(key, value));
-    if (photo) data.append("photo", photo);
 
-    toast.success("Form submitted successfully!");
-
-    await onSubmit(data);
-    navigate("/dashboard");
+    try {
+      await submitEWaste({
+        ...form,
+        photo
+      });
+  
+      navigate("/dashboard");
+      toast.success("E-waste registered successfully!");
+    } catch (err) {
+      console.error("❌ Error submitting e-waste:", err);
+      toast.error("Failed to submit. Please try again.");
+    }
   };
 
   return (

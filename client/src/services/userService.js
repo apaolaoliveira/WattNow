@@ -1,5 +1,4 @@
 import api from "./api";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 
 export const saveUserProfile = async ({ name, location, userId }) => {
@@ -17,7 +16,6 @@ export const getUserProfile = async (userId) => {
     params: { userId }
   });
 
-  console.log("User profile data:", res.data);
   return res.data;
 };
 
