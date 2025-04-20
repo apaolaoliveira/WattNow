@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { saveUserProfile } from "../../services/userService";
+import { saveUserProfile, useHasCompletedProfile } from "../../services/userService";
 
 export default function CompleteProfile() {
   const { user, isLoading } = useAuth0();
@@ -11,9 +11,7 @@ export default function CompleteProfile() {
   const [autoLocation, setAutoLocation] = useState("");
   const navigate = useNavigate();
 
-  if (isLoading || !user) {
-    return <div>Loading...</div>;
-  }
+  if(isLoading || !user ) return <div>Loading...</div>;
 
   const handleGetLocation = () => {
     navigator.geolocation.getCurrentPosition(async (pos) => {
@@ -29,23 +27,17 @@ export default function CompleteProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     const finalLocation = location || autoLocation;
-  
+
     try {
       await saveUserProfile({
         name,
         location: finalLocation,
-        userId: user.sub
+        userId: user.sub,
       });
 
-      user.user_metadata = {
-        ...user.user_metadata,
-        profileCompleted: true,
-      };
-  
-      navigate("/dashboard");
       toast.success("Profile saved successfully!");
+      navigate("/dashboard");
     } catch (err) {
       console.error("Error saving:", err);
       toast.error("Error saving profile");

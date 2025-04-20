@@ -15,7 +15,11 @@ createRoot(document.getElementById('root')).render(
       authorizationParams={{
         redirect_uri: import.meta.env.VITE_AUTH0_CALLBACK_URL,
         audience: `https://${import.meta.env.VITE_AUTH0_DOMAIN}/api/v2/`,
-        scope: 'read:users read:current_user update:current_user_metadata',
+        scope: 'openid profile email',
+      }}
+      onRedirectCallback={(appState) => {
+        const returnTo = appState?.returnTo || "/";
+        window.history.replaceState({}, document.title, returnTo);
       }}
     >
       <App />
