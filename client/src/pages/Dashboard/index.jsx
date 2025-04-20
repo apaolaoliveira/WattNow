@@ -1,9 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { useUserProfile } from '../../auth/useUserProfile';
 
 export default function Dashboard() {
-  const { user, isAuthenticated, isLoading, logout } = useAuth0();
+  const { isAuthenticated, isLoading, logout } = useAuth0();
+  const userProfile = useUserProfile();
 
-  if (isLoading) {
+  if (isLoading || !userProfile) {
     return <div>Loading...</div>;
   }
 
@@ -20,7 +22,7 @@ export default function Dashboard() {
       <h1>Dashboard</h1>
       {isAuthenticated && (
         <div>
-          <h1>Welcome {user.name}</h1>
+          <h1>Welcome {userProfile.name}</h1>
           <button onClick={handleLogout}>Logout</button>
         </div>
       )}

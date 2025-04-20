@@ -11,10 +11,20 @@ export default function LandingPage() {
     });
   };
 
+  const handleSignup = () => {
+    loginWithRedirect({
+      screen_hint: "signup",	
+      appState: {
+        returnTo: "/complete-profile",
+      },
+    });
+  };
+
   return (
     <div>
       <h1>Landing Page</h1>
       <button onClick={handleLogin}>Login</button>
+      <button onClick={handleSignup}>Signup</button>
     </div>
   );
 }
