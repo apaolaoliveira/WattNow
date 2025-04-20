@@ -6,6 +6,8 @@ import ProtectedRoute from './auth/protectedRoute';
 import CompleteProfile from './pages/CompleteProfile';
 import AuthRedirect from './auth/useRedirectAfterAuth';
 import AddNewTrashModal from './pages/AddNewTrashForm';
+import LocationsPage from './pages/ImportantLocations';
+import CommunityPage from './pages/Community';
 
 function App() {
   const { isLoading } = useAuth0();
@@ -31,6 +33,22 @@ function App() {
           element={
             <ProtectedRoute>
               <AddNewTrashModal />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <ProtectedRoute>
+              <CommunityPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/locations"
+          element={
+            <ProtectedRoute>
+              <LocationsPage />
             </ProtectedRoute>
           }
         />
