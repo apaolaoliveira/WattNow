@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './auth/protectedRoute';
 import CompleteProfile from './pages/CompleteProfile';
 import AuthRedirect from './auth/useRedirectAfterAuth';
+import AddNewTrashModal from './pages/AddNewTrashForm';
 
 function App() {
   const { isLoading } = useAuth0();
@@ -22,6 +23,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/new-trash"
+          element={
+            <ProtectedRoute>
+              <AddNewTrashModal />
             </ProtectedRoute>
           }
         />

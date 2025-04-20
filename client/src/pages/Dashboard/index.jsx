@@ -14,11 +14,13 @@ import {
 import { FaLeaf, FaHandsHelping, FaDollarSign } from 'react-icons/fa';
 
 import ButtonGradient from '../../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const { user, isLoading } = useAuth0();
   const [profile, setProfile] = useState(null);
   const [loadingProfile, setLoadingProfile] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -48,7 +50,7 @@ export default function Dashboard() {
         <Header>Welcome, {profile.name}!</Header>
         <SubHeader>This is your dashboard</SubHeader>
 
-        <ButtonGradient className="full">+ Add new e-waste</ButtonGradient>
+        <ButtonGradient onClick={navigate('/new-trash')} className="full">+ Add new e-waste</ButtonGradient>
 
         <SectionTitle>Your Impact</SectionTitle>
 
