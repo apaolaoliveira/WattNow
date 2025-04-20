@@ -15,6 +15,10 @@ export default createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   a {
     text-decoration: none;
   }
