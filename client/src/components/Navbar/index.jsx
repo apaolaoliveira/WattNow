@@ -6,7 +6,7 @@ import useAuthFlow from '../../auth/useAuthFlow';
 import  ButtonGradient from '../Button';
 
 export default function Navbar() {
-  const { logout } = useAuthFlow();
+  const { logoutUser } = useAuthFlow();
   const navigate = useNavigate();
 
   return (
@@ -20,7 +20,7 @@ export default function Navbar() {
         <NavItem onClick={() => navigate('/locations')}>Important Locations</NavItem>
       </NavLinks>
       <RightSide>
-        <ButtonGradient onClick={logout}>Sign Out</ButtonGradient>
+        <ButtonGradient onClick={logoutUser}>Sign Out</ButtonGradient>
         <Avatar><FaUserCircle size={22} /></Avatar>
       </RightSide>
     </Container>
